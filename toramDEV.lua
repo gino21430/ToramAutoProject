@@ -151,7 +151,27 @@ function commonDialog()
 	addRadioButton(RDownString,4)
 	dialogShow(CommonSettingString)
 end
+--[[
+	BreakDownCategoeyString = "分解種類(圖示):"
+	SwordString = "劍"
+	MetalString = "金屬"
 
+	HatString = "帽子"
+	BodyArmorString = "盔甲"
+	ClothString = "布料"
+
+	BeastString = "獸品"
+
+	WondString = "法杖"
+	ShieldString = "盾牌"
+	WoodString = "木材"
+
+	MedicineString = "藥品(植物)"
+	NutString = "藥品(雜類)"
+
+	MagicDeviceString = "魔導具"
+	ManaString = "魔素"
+	]]
 function normalModeDialog()
 	if (language == "zh") then
 		normalModeStringsZH()
@@ -161,17 +181,26 @@ function normalModeDialog()
 	dialogInit()
 	addTextView(BreakDownCategoeyString)
 	newRow()
-	addCheckBox("sword", SwordString, true)
+	addCheckBox("sword", SwordString, false)
 	addCheckBox("metal", MetalString, false)
-	addCheckBox("cloth", ClothString, false)
-	addCheckBox("beast", BeastString, false)
+
+	addCheckBox("cloth", ClothString, true)
+	addCheckBox("hat", HatString, false)
+	addCheckBox("bodyArmor", BodyArmorString, false)
+
+	addCheckBox("beast", BeastString, true)
+	newRow()
 	addCheckBox("wond", WondString, false)
-	addCheckBox("shield", ShieldString, true)
+	addCheckBox("shield", ShieldString, false)
 	addCheckBox("wood", WoodString, true)
+
 	addCheckBox("medicine", MedicineString, false)
+	addCheckBox("nut", NutString, false)
+
 	addCheckBox("magicDevice", MagicDeviceString, false)
 	addCheckBox("mana", ManaString, false)
-	dialogShowFullScreen("Toram Auto Project by Mikucat")
+
+	dialogShow("Toram Auto Project by Mikucat")
 end
 function fastModeDialog()
 	if (language == "zh") then
@@ -259,9 +288,6 @@ function sendMail(column,row,startBlock,lastBlock)
 end
 
 function fastMode()
-	--function rightList(local i) return Location(1200 , 226 + i*150 +39)
-	--function bagList(local i , local j) return Location(1125 + i*183 +90 , 165 + j*183 +90)
-	--function friendList(local i) return Location(960 , 311 + i*120 +40)
 	listCategory = {
 		Location(960,380),
 		Location(960,650),
@@ -280,10 +306,10 @@ function fastMode()
 end
 
 
---=============================================================================================
---=============================================================================================
---=============================================================================================
---=============================================================================================
+--==========
+--==========
+--==========
+--==========
 
 
 function processing()
@@ -292,7 +318,6 @@ function processing()
 	if (r <= 20 and g <= 80 and b >= 120) then click(ok) end
 	click(Location(960,890))
 	click(Location(960,870))
-	--toast("Debug-processingDone")
 end
 
 function selectTarget(picture)
@@ -314,7 +339,6 @@ function selectTarget(picture)
 		end
 	end
 	usePreviousSnap(false)
-	--toast("Debug-selectDone")
 	return success
 end
 
@@ -323,12 +347,12 @@ function count()
 	if(metal) then table.insert(selectCategory[1], "metal.png") end
 
 	if(cloth) then table.insert(selectCategory[2], "cloth.png") end
-	if(bodyarmor) then table.insert(selectCategory[2], "bodyarmor.png") end
+	if(bodyArmor) then table.insert(selectCategory[2], "bodyarmor.png") end
 	if(hat) then table.insert(selectCategory[2], "hat.png") end
 
 	if(beast) then table.insert(selectCategory[3], "beast.png") end
 
-	--if(wond) then table.insert(selectCategory[4], "wond.png") end
+	if(wond) then table.insert(selectCategory[4], "wond.png") end
 	if(shield) then table.insert(selectCategory[4], "shield.png") end
 	if(wood) then table.insert(selectCategory[4], "wood.png") end
 
@@ -336,10 +360,9 @@ function count()
 	if(nut) then table.insert(selectCategory[5], "nut.png") end
 	if(powder) then table.insert(selectCategory[5], "powder.png") end
 
-	--if(magicDevice) then table.insert(selectCategory[6], "magicdevice.png") end
+	if(magicDevice) then table.insert(selectCategory[6], "magicdevice.png") end
 	if(mana) then table.insert(selectCategory[6], "manaquest.png") end
 	--table.insert(selectCategory[], ".png")
-	--toast("Debug-countDone")
 end
 
 function normalMode()
@@ -427,32 +450,26 @@ Settings:set("AutoWaitTimeout",3)
 if (immersive) then setImmersiveMode(true) end
 
 MaxMP = math.floor(MaxMP / 100) - 3
---toast("MaxMPTimes:"..MaxMP)
 if (wave == fill) then scriptexit(ConflictString) end
 
 while(true) do
 	if (LowExit and batteryLevel() <= 20) then
 		scriptExit(ChargeString)
 	end
-	local fillTimes = 0
 	---[[
 	for i=1,MaxMP do
 		doubleClick(quickButton[wave])
-		wait(4)
-		--toast("偵測魔力填充中...")
-		local r , g , b = getColor(Location(883,829)) --getColor(Location(1120,829))
-		if (r >= 230 and g <= 20 and b <= 20) then
+		wait(3)
+		if (Region(935,819,22,18):exists("powercharge.png",5)) then
 			--toast("已偵測到")
 			wait(fillTime+3)
-			fillTimes = fillTimes + 1
+		else
+			click(quickButton[fill])
+			wait(fillTime+1.7)
 		end
 	end
-	if (fillTimes <= MaxMP) then
-		click(quickButton[fill])
-		wait(fillTime+5)
-	end
 	click(quickButton[fill])
-	wait(fillTime+5)
+	wait(fillTime+1.7)
 	---]]
 	if (clean == true) then
 		if (Region(300,105,50,37):exists("bagfull.png")) then
