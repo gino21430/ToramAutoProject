@@ -440,18 +440,19 @@ while(true) do
 		doubleClick(quickButton[wave])
 		wait(4)
 		--toast("偵測魔力填充中...")
-		if (Region(935,819,22,18):exists("PowerCharge.png",10)) then
+		local r , g , b = getColor(Location(883,829)) --getColor(Location(1120,829))
+		if (r >= 230 and g <= 20 and b <= 20) then
 			--toast("已偵測到")
-			wait(fillTime+2)
+			wait(fillTime+3)
 			fillTimes = fillTimes + 1
 		end
 	end
 	if (fillTimes <= MaxMP) then
 		click(quickButton[fill])
-		wait(fillTime+3)
+		wait(fillTime+5)
 	end
 	click(quickButton[fill])
-	wait(fillTime+3)
+	wait(fillTime+5)
 	---]]
 	if (clean == true) then
 		if (Region(300,105,50,37):exists("bagfull.png")) then
