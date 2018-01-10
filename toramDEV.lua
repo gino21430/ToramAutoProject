@@ -91,6 +91,7 @@ function normalModeStringsZH()
 	WoodString = "木材"
 	MedicineString = "藥品(植物)"
 	NutString = "藥品(雜類)"
+	PowderString = "粉末"
 	MagicDeviceString = "魔導具"
 	ManaString = "魔素"
 end
@@ -108,6 +109,7 @@ function normalModeStringsEN()
 	WoodString = "wood"
 	MedicineString = "medicine(plants)"
 	NutString = "medicine(mixed)"
+	PowderString = "powder"
 	MagicDeviceString = "magic device"
 	ManaString = "mana"
 end
@@ -131,7 +133,7 @@ function commonDialog()
 	addRadioButton(FastModeString,2)
 	newRow()
 	addTextView(FillTimeString)
-	addEditNumber("fillTime", 5.0)
+	addEditNumber("fillTime", 6.5)
 	newRow()
 	addTextView(MaxMPString)
 	addEditNumber("MaxMP",500)
@@ -153,24 +155,7 @@ function commonDialog()
 end
 --[[
 	BreakDownCategoeyString = "分解種類(圖示):"
-	SwordString = "劍"
-	MetalString = "金屬"
 
-	HatString = "帽子"
-	BodyArmorString = "盔甲"
-	ClothString = "布料"
-
-	BeastString = "獸品"
-
-	WondString = "法杖"
-	ShieldString = "盾牌"
-	WoodString = "木材"
-
-	MedicineString = "藥品(植物)"
-	NutString = "藥品(雜類)"
-
-	MagicDeviceString = "魔導具"
-	ManaString = "魔素"
 	]]
 function normalModeDialog()
 	if (language == "zh") then
@@ -185,7 +170,7 @@ function normalModeDialog()
 	addCheckBox("metal", MetalString, false)
 
 	addCheckBox("cloth", ClothString, true)
-	addCheckBox("hat", HatString, false)
+	addCheckBox("hat", HatString, true)
 	addCheckBox("bodyArmor", BodyArmorString, false)
 
 	addCheckBox("beast", BeastString, true)
@@ -196,6 +181,7 @@ function normalModeDialog()
 
 	addCheckBox("medicine", MedicineString, false)
 	addCheckBox("nut", NutString, false)
+	addCheckBox("powder", PowderString, true)
 
 	addCheckBox("magicDevice", MagicDeviceString, false)
 	addCheckBox("mana", ManaString, false)
@@ -316,24 +302,25 @@ function processing()
 	click(button[2])
 	local r , g , b = getColor(Location(700,913))
 	if (r <= 20 and g <= 80 and b >= 120) then click(ok) end
-	click(Location(960,890))
-	click(Location(960,870))
+	click(Location(940,890))
+	click(Location(940,870))
 end
 
 function selectTarget(picture)
 	--savecnt = 1
 	local success,fail = 0,0
+	print("Target:"..picture)
 	for j=1,5 do
 		if (fail >= 2) then break end
 		for i=1,4 do
 			if (fail >= 2) then break end
 			if (Region(bagX[i]+30,bagY[j]+60,80,60):exists(picture,0.9)) then
+				print(i..","..j..":"..success)
 				success = success + 1
 			 	click(Location(bagX[i]+90,bagY[j]+90))
 			else
 				fail = fail + 1
-				--Region(bagX[i]+30,bagY[j]+60,80,60):save("unMatch"..savecnt..".png")
-				--savecnt = savecnt + 1
+				print(i..","..j..":failed")
 			end
 			usePreviousSnap(true)
 		end
@@ -346,9 +333,9 @@ function count()
 	if(sword) then table.insert(selectCategory[1], "sword.png") end
 	if(metal) then table.insert(selectCategory[1], "metal.png") end
 
-	if(cloth) then table.insert(selectCategory[2], "cloth.png") end
-	if(bodyArmor) then table.insert(selectCategory[2], "bodyarmor.png") end
 	if(hat) then table.insert(selectCategory[2], "hat.png") end
+	if(bodyArmor) then table.insert(selectCategory[2], "bodyarmor.png") end
+	if(cloth) then table.insert(selectCategory[2], "cloth.png") end
 
 	if(beast) then table.insert(selectCategory[3], "beast.png") end
 
@@ -356,12 +343,13 @@ function count()
 	if(shield) then table.insert(selectCategory[4], "shield.png") end
 	if(wood) then table.insert(selectCategory[4], "wood.png") end
 
+	if(powder) then table.insert(selectCategory[5], "powder.png") end
 	if(medicine) then table.insert(selectCategory[5], "medicine.png") end
 	if(nut) then table.insert(selectCategory[5], "nut.png") end
-	if(powder) then table.insert(selectCategory[5], "powder.png") end
 
 	if(magicDevice) then table.insert(selectCategory[6], "magicdevice.png") end
 	if(mana) then table.insert(selectCategory[6], "manaquest.png") end
+
 	--table.insert(selectCategory[], ".png")
 end
 
@@ -395,21 +383,25 @@ function normalMode()
 	click(button[1])
 	-- 1	   2	   3	   4	   5	   6
 	-- 金屬 -> 布料 -> 獸品 -> 木材 -> 藥品 -> 魔素
-	local successTimes = 0
+	
 	for i=1,6 do
 		if (#selectCategory[i] >= 1) then
+			local successTimes = 0
+			print("#selectCategory["..i.."]:"..#selectCategory[i])
 			for j=1,#selectCategory[i] do
 				successTimes = successTimes + selectTarget(selectCategory[i][j])
 			end
+			print("successTimes:"..successTimes)
 			if (successTimes >= 1) then processing() end
 		end
-			click(button[1]) --切換種類
+		click(button[1]) --切換種類
 	end
+	print("==========")
 	click(Location(1910,10)) --關閉
 end
 
 --===腳本入口 Script Entry===
-
+t = Timer()
 bagX = {1125,1308,1491,1674}
 bagY = { 165, 348, 531, 714, 897}
 
@@ -450,26 +442,29 @@ Settings:set("AutoWaitTimeout",3)
 if (immersive) then setImmersiveMode(true) end
 
 MaxMP = math.floor(MaxMP / 100) - 3
-if (wave == fill) then scriptexit(ConflictString) end
+if (wave == fill) then scriptExit(ConflictString) end
 
 while(true) do
+	if (t:check() >= 280) then scriptExit("Trial Only") end
 	if (LowExit and batteryLevel() <= 20) then
 		scriptExit(ChargeString)
 	end
 	---[[
 	for i=1,MaxMP do
 		doubleClick(quickButton[wave])
-		wait(3)
-		if (Region(935,819,22,18):exists("powercharge.png",5)) then
-			--toast("已偵測到")
-			wait(fillTime+3)
+		wait(4)
+		if (Region(935,819,22,18):exists("powercharge.png",2)) then
+			wait(fillTime)
+			--toast("finish")
 		else
 			click(quickButton[fill])
-			wait(fillTime+1.7)
+			wait(fillTime)
+			--toast("exception finish")
 		end
 	end
 	click(quickButton[fill])
-	wait(fillTime+1.7)
+	wait(fillTime)
+	--toast("LAST finish")
 	---]]
 	if (clean == true) then
 		if (Region(300,105,50,37):exists("bagfull.png")) then
