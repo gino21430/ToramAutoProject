@@ -1,6 +1,6 @@
 # ToramAutoProject
 Toram Online auto attack & clean bag script on AnkuLua
-## Alpha 1.0
+## Alpha version
 ### Function :
 1. Auto use skill and fillMP
 2. Two clean bag mode: 
@@ -10,7 +10,7 @@ Toram Online auto attack & clean bag script on AnkuLua
         Mailing something you want reserve to someone
 ### Caution :
 1. Script may have some bug, so lock you need item in order not to be processed
-2. Because identifying picture is ***slower*** thrn human ,***do not*** play with human player
+2. Because identifying picture is ***slower*** then human ,***do not*** play with human player
 3. In mailing mode, you have to let the receiver at 001~006 on the list
 4. I only test on Nox emulator and my HTC New One, plz pay attention on what the script do firt time
 ### Test result :
