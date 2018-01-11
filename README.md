@@ -1,8 +1,6 @@
 # 托蘭異世錄自動腳本計畫 :
 # 使用AnkuLua程式自動清怪和清理背包的腳本
 
----
-
 ### 狀態: _測試版_ 1.0
 > 英文翻譯待改進
 > 仍在測試它的穩定性
@@ -11,11 +9,11 @@
 * 暱稱 : 安安
 * 學歷 : 成功高中(當個稱職學渣XD)
 * 興趣 : 資訊相關、打羽球、睡覺、玩電腦遊戲、看動漫
-* Line : mikumikumikumiku (就是"miku"x4)
-平常閒著會打打CTF和ZJ(立志寫完80%!!!)，有時耍懶把寫腳本當放鬆(?)
-其實是我哥在玩這款遊戲，只是發現這遊戲怎麼那麼坑阿!
-錢超級難賺，要不是有人專門刷錢，否則裡面的市場有跟沒有一樣
-除了打王之外就剩解任來賺EXP，也就是這支腳本誕生滴由來喔~
+* Line : mikumikumikumiku (就是"miku"x4) <br>
+	平常閒著會打打CTF和ZJ(立志寫完80%!!!)，有時耍懶把寫腳本當放鬆(?)
+	其實是我哥在玩這款遊戲，只是發現這遊戲怎麼那麼坑阿!
+	錢超級難賺，要不是有人專門刷錢，否則裡面的市場有跟沒有一樣
+	除了打王之外就剩解任來賺EXP，也就是這支腳本誕生滴由來喔~
 
 ### 功能 :
 1. 自動忽略錯誤 : 它可以忽略錯誤並繼續正常執行
@@ -23,7 +21,7 @@
 	* 加工模式 : 將副產物加工成素材點數
 	* 寄信模式 : 寄送所有未鎖上的物品到別隻帳號
 	***注意:*** 使用寄信模式前你應該要先填滿背包，否則將會把副產物一併寄出
-3.  * 計時停止
+3. 計時停止
 
 ### 準備
 1. 開啟"自動使用藥水"以免死亡
@@ -34,7 +32,7 @@
 
 ### 注意事項 :
 1. 只要是腳本都有可能出錯，最好把你需要的東西鎖定以防萬一
-2. 腳本判斷速度一定***比人慢***，所以請盡量***不要***與人組隊
+2. 腳本判斷速度一定 ***比人慢*** ，所以請盡量 ***不要*** 與人組隊
 3. 使用寄信模式需要讓接收者位於清單 001~006 的位置
 4. 我只在夜神模擬器和我的HTC New One測試過, 最好先確定腳本正常執行後再離開
 
@@ -51,22 +49,22 @@
 	* 螢幕解析度:1360x768(1920x1080)
 <br>
 <br>
-
+<br>
+<br>
 > My english is poor , so if somthing can be better, please leave messages at my post or PM me
 
 # ToramAutoProject :
 # Toram Online Auto Attack & Clean Bag Script on AnkuLua
----
 
-## Status : Beta 1.0
+## Status : _Beta_ 1.0
 > Still testing its stability
 
 ### Function :
 1. Auto ignore error: It can ignore attack error and normal executing e.g. No monster, spell was interrupted
 2. Two clean bag mode :
     * proccess mode : Turn trash into element point
-    * mailing mode : Mailing everything which is unlocked to someone
-    ***Attention:*** You should fill up your bag with you want before using mailing mode, or trashes will be send together
+    * mailing mode : Mailing everything which is unlocked to someone <br>
+    	***Attention:*** You should fill up your bag with you want before using mailing mode, or trashes will be send together
 3. Execute timer : Auto stop after times up
 
 ### Preparation :
