@@ -44,12 +44,12 @@ function commonStringsEN()
 	NormalModeString = "Turn to element mode"
 	FastModeString = "Send mail mode(quick)"
 	CommonSettingString = "Auto attack setting"
-	ShockWaveLocationString = "Shock wave's location:"
+	ShockWaveLocationString = "Impact location:"
 	LUpString = "Left-Up"
 	RUpString = "Right-Up"
 	LDownString = "Left-Down"
 	RDownString = "Right-Down"
-	MPchargeLocationString = "Fill MP's location:"
+	MPchargeLocationString = "MPcharge location:"
 	LowExitString = "Auto stop when battery low"
 	ConflictString = "Two skill conflict!"
 	ChargeString = "battery low!"
@@ -453,7 +453,8 @@ MaxMP = math.floor(MaxMP / 100) - 3
 if (wave == charge) then scriptExit(ConflictString) end
 
 while(true) do
-	if (t:check() >= autoStop*60-10) then scriptExit("Trial Only") end
+
+	if (t:check() >= autoStop*60-10 and autoStop >= 1) then scriptExit("STOP") end
 	if (LowExit and batteryLevel() <= 20) then
 		scriptExit(ChargeString)
 	end
