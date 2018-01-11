@@ -24,7 +24,7 @@ function commonStringsZH()
 	RUpString = "右上"
 	LDownString = "左下"
 	RDownString = "右下"
-	FillMPLocationString = "魔力填充位置:"
+	MPchargeLocationString = "魔力填充位置:"
 	LowExitString = "電量過低時自動停止"
 	ConflictString = "兩個技能位置不可相同!"
 	ChargeString = "電量過低!"
@@ -35,7 +35,7 @@ function commonStringsEN()
 	-- English
 	NavigationBarString = "Hide Navigation Bar"
 	CleanString = "Clean bag"
-	FillTimeString = "Fill MP's CD"
+	FillTimeString = "MP charge CD"
 	ExecuteModeString = "Clean bag mode"
 	NormalModeString = "Turn to element mode"
 	FastModeString = "Send mail mode(quick)"
@@ -45,7 +45,7 @@ function commonStringsEN()
 	RUpString = "Right-Up"
 	LDownString = "Left-Down"
 	RDownString = "Right-Down"
-	FillMPLocationString = "Fill MP's location:"
+	MPchargeLocationString = "Fill MP's location:"
 	LowExitString = "Auto stop when battery low"
 	ConflictString = "Two skill conflict!"
 	ChargeString = "battery low!"
@@ -133,7 +133,7 @@ function commonDialog()
 	addRadioButton(FastModeString,2)
 	newRow()
 	addTextView(FillTimeString)
-	addEditNumber("fillTime", 6.5)
+	addEditNumber("chargeTime", 6.5)
 	newRow()
 	addTextView(MaxMPString)
 	addEditNumber("MaxMP",500)
@@ -145,8 +145,8 @@ function commonDialog()
 	addRadioButton(LDownString,3)
 	addRadioButton(RDownString,4)
 	newRow()
-	addTextView(FillMPLocationString)
-	addRadioGroup("fill",4)
+	addTextView(MPchargeLocationString)
+	addRadioGroup("charge",4)
 	addRadioButton(LUpString,1)
 	addRadioButton(RUpString,2)
 	addRadioButton(LDownString,3)
@@ -380,7 +380,7 @@ function normalMode()
 	click(Location(500,290)) --煉金術
 	click(Location(960,650)) --素材加工
 	click(button[3]) --切換成多選
-	click(button[1])
+	click(button[1]) --切換種類
 	-- 1	   2	   3	   4	   5	   6
 	-- 金屬 -> 布料 -> 獸品 -> 木材 -> 藥品 -> 魔素
 	
@@ -396,7 +396,7 @@ function normalMode()
 		end
 		click(button[1]) --切換種類
 	end
-	print("==========")
+	print("========")
 	click(Location(1910,10)) --關閉
 end
 
@@ -442,7 +442,7 @@ Settings:set("AutoWaitTimeout",3)
 if (immersive) then setImmersiveMode(true) end
 
 MaxMP = math.floor(MaxMP / 100) - 3
-if (wave == fill) then scriptExit(ConflictString) end
+if (wave == charge) then scriptExit(ConflictString) end
 
 while(true) do
 	if (t:check() >= 280) then scriptExit("Trial Only") end
@@ -454,16 +454,16 @@ while(true) do
 		doubleClick(quickButton[wave])
 		wait(4)
 		if (Region(935,819,22,18):exists("powercharge.png",2)) then
-			wait(fillTime)
+			wait(chargeTime)
 			--toast("finish")
 		else
-			click(quickButton[fill])
-			wait(fillTime)
+			click(quickButton[charge])
+			wait(chargeTime)
 			--toast("exception finish")
 		end
 	end
-	click(quickButton[fill])
-	wait(fillTime)
+	click(quickButton[charge])
+	wait(chargeTime)
 	--toast("LAST finish")
 	---]]
 	if (clean == true) then
