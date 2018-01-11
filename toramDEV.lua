@@ -14,6 +14,8 @@ function commonStringsZH()
 	-- Traditional Chinese (Taiwan)
 	NavigationBarString = "隱藏導航列"
 	CleanString = "清理背包"
+	AutoStopString1 = "經過"
+	AutoStopString2 = "分鐘後自動停止 (0 = 不自動停止)"
 	FillTimeString = "魔力填充時間:"
 	ExecuteModeString = "清包模式:"
 	NormalModeString = "分解模式"
@@ -35,6 +37,8 @@ function commonStringsEN()
 	-- English
 	NavigationBarString = "Hide Navigation Bar"
 	CleanString = "Clean bag"
+	AutoStopString1 = "Stop script after "
+	AutoStopString2 = " minutes (0 = never auto stop)"
 	FillTimeString = "MP charge CD"
 	ExecuteModeString = "Clean bag mode"
 	NormalModeString = "Turn to element mode"
@@ -124,6 +128,10 @@ function commonDialog()
 	addCheckBox("immersive", NavigationBarString, false)
 	newRow()
 	addCheckBox("LowExit",LowExitString,false)
+	newRow()
+	addTextView(AutoStopString1)
+	addEditNumber("autoStop",4.5)
+	addTextView(AutoStopString2)
 	newRow()
 	addCheckBox("clean",CleanString,false)
 	newRow()
@@ -445,7 +453,7 @@ MaxMP = math.floor(MaxMP / 100) - 3
 if (wave == charge) then scriptExit(ConflictString) end
 
 while(true) do
-	if (t:check() >= 280) then scriptExit("Trial Only") end
+	if (t:check() >= autoStop*60-10) then scriptExit("Trial Only") end
 	if (LowExit and batteryLevel() <= 20) then
 		scriptExit(ChargeString)
 	end

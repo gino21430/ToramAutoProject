@@ -28,7 +28,7 @@
 2. **關閉**"鏡頭自動追蹤"以免跑遠
 3. 將"鎖定怪物"設成**遠**
 4. 連擊請設成 **衝擊波 -> 暴風+增幅 -> 魔力填充+迅速**
-<img src="image/Combo.png" alt="Combo.png" title="Combo setting">
+<img src="image/Combo_zhTW.png" alt="Combo_zhTW.png" title="Combo_zhTW.png" height="50%" width="50%">
 
 ### 注意事項 :
 1. 只要是腳本都有可能出錯，最好把你需要的東西鎖定以防萬一
@@ -72,7 +72,7 @@
 2. turn **off** "Auto focus" in order not to move out of the area
 3. switch "Target Monster" to **furthest**
 4. set combo like this **impact -> storm + smite -> MP charge + swift**
-<img src="image/Combo.png" alt="Combo.png" title="Combo setting">
+<img src="image/Combo.png" alt="Combo.png" title="Combo.png" height="50%" width="50%">
 
 ### Caution :
 1. Script may have some bug, so lock you need item in order not to be processed or send
