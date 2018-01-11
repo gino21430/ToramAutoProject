@@ -194,7 +194,7 @@ function normalModeDialog()
 	addCheckBox("magicDevice", MagicDeviceString, false)
 	addCheckBox("mana", ManaString, false)
 
-	dialogShow("Toram Auto Project by Mikucat")
+	dialogShowFullScreen("Toram Auto Project by Mikucat")
 end
 function fastModeDialog()
 	if (language == "zh") then
@@ -315,20 +315,21 @@ function processing()
 end
 
 function selectTarget(picture)
-	--savecnt = 1
+	savecnt = 1
 	local success,fail = 0,0
 	print("Target:"..picture)
 	for j=1,5 do
 		if (fail >= 2) then break end
 		for i=1,4 do
 			if (fail >= 2) then break end
-			if (Region(bagX[i]+30,bagY[j]+60,80,60):exists(picture,0.9)) then
-				print(i..","..j..":"..success)
+			if (Region(bagX[i]+30,bagY[j]+60,80,60):exists(picture,0.8)) then
+				print(i..","..j..":success "..success)
 				success = success + 1
 			 	click(Location(bagX[i]+90,bagY[j]+90))
 			else
 				fail = fail + 1
-				print(i..","..j..":failed")
+				print("("..i..","..j.."):failed")
+				--Region(bagX[i]+70,bagY[j]+70,40,40):save("unMatch"..savecnt..".png") --debug
 			end
 			usePreviousSnap(true)
 		end
@@ -367,17 +368,27 @@ function normalMode()
 	count()
 	click(menu) --選單
 	click(Location(290,550)) --道具
-	local r , g ,b = getColor(Location(1100,660)) --是否位於暫存區
-	if ( r >= 200 and g <= 100) then
-		for i=1,20 do
-			click(Location(1125+90,165+90))
-			if (Region(1125+80,165+80,20,20):exists("empty.png",1)) then
-				break
+	local r , g , b = getColor(Location(1090,260)) --是否位於暫存區
+	--print("RGB:"..r..","..g..","..b) --debug
+	if ( r >= 100 and g <= 100 and b <= 100) then
+		local emptyNumber
+		for j=1,5 do
+			for i=1,4 do
+				if (Region(bagX[i]+60,bagY[j]+60,50,50):exists("empty.png",0.9)) then
+					emptyNumber = i + (j-1)*4
+					--toast(emptyNumber.." is empty") --debug
+					break
+				end
 			end
+		end
+		while (emptyNumber >= 0) do
 			click(Location(1125+90,165+90))
 			click(button[2])
 			click(ok)
+			emptyNumber = emptyNumber - 1
 		end
+		click(Location(990,285)) --上一頁
+		
 	end
 	click(button[2]) --重排
 	click(ok)
@@ -389,22 +400,20 @@ function normalMode()
 	click(Location(960,650)) --素材加工
 	click(button[3]) --切換成多選
 	click(button[1]) --切換種類
-	-- 1	   2	   3	   4	   5	   6
-	-- 金屬 -> 布料 -> 獸品 -> 木材 -> 藥品 -> 魔素
 	
 	for i=1,6 do
 		if (#selectCategory[i] >= 1) then
 			local successTimes = 0
-			print("#selectCategory["..i.."]:"..#selectCategory[i])
+			print("Number of Target:"..#selectCategory[i])
 			for j=1,#selectCategory[i] do
 				successTimes = successTimes + selectTarget(selectCategory[i][j])
 			end
-			print("successTimes:"..successTimes)
+			--print("successTimes:"..successTimes) --debug
 			if (successTimes >= 1) then processing() end
 		end
 		click(button[1]) --切換種類
 	end
-	print("========")
+	print("============")
 	click(Location(1910,10)) --關閉
 end
 
@@ -449,7 +458,9 @@ Settings:setScriptDimension(true,1920)
 Settings:set("AutoWaitTimeout",3)
 if (immersive) then setImmersiveMode(true) end
 
+if (MaxMP > 600) then MaxMP = 600 end
 MaxMP = math.floor(MaxMP / 100) - 3
+
 if (wave == charge) then scriptExit(ConflictString) end
 
 while(true) do
@@ -464,19 +475,19 @@ while(true) do
 		wait(4)
 		if (Region(935,819,22,18):exists("powercharge.png",2)) then
 			wait(chargeTime)
-			--toast("finish")
+			--toast("finish") --debug
 		else
 			click(quickButton[charge])
 			wait(chargeTime)
-			--toast("exception finish")
+			--toast("exception finish") --debug
 		end
 	end
 	click(quickButton[charge])
 	wait(chargeTime)
-	--toast("LAST finish")
+	--toast("LAST finish") --debug
 	---]]
 	if (clean == true) then
-		if (Region(300,105,50,37):exists("bagfull.png")) then
+		if (Region(300,100,150,50):exists("bagfull.png")) then
 			if (executeMode == 1) then
 				normalMode()
 			else
