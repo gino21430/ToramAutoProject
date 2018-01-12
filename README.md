@@ -1,10 +1,16 @@
 
-# 托蘭異世錄自動腳本計畫 :
+# 托蘭異世錄自動腳本計畫
 # 使用AnkuLua程式自動清怪和清理背包的腳本
+# ToramAutoProject
+# Toram Online Auto Attack & Clean Bag Script on AnkuLua
 
-### 狀態: _測試版_ 1.0
-> 英文翻譯待改進
+## 狀態: _測試版_ 1.0
+> 英文翻譯待改進 <br>
 > 仍在測試它的穩定性
+
+## Status : _Beta_ 1.0
+> English translation needs improve <br>
+> Still testing its stability
 
 ### 作者 :
 * 暱稱 : 安安
@@ -24,6 +30,14 @@
 	***注意:*** 使用寄信模式前你應該要先填滿背包，否則將會把副產物一併寄出
 3. 計時停止
 
+### Function :
+1. Auto ignore error: It can ignore attack error and normal executing e.g. No monster, spell was interrupted
+2. Two clean bag mode :
+    * proccess mode : Turn trash into element point
+    * mailing mode : Mailing everything which is unlocked to someone <br>
+    	***Attention:*** You should fill up your bag with you want before using mailing mode, or trashes will be send together
+3. Execute timer : Auto stop after times up
+
 ### 準備
 1. 開啟"自動使用藥水"以免死亡
 2. **關閉**"鏡頭自動追蹤"以免跑遠
@@ -31,11 +45,24 @@
 4. 連擊請設成 **衝擊波 -> 暴風+增幅 -> 魔力填充+迅速** <br>
 <img src="image/combo_zhTW.png" alt="altCombo_zhTW.png" title="Combo_zhTW.png">
 
+### Preparation :
+1. turn on "auto use item" if you may be killed
+2. turn **off** "Auto focus" in order not to move out of the area
+3. switch "Target Monster" to **furthest**
+4. set combo like this **impact -> storm + smite -> MP charge + swift** <br>
+<img src="image/combo_enUS.png" alt="altcombo_enUS.png" title="combo_enUS.png">
+
 ### 注意事項 :
 1. 只要是腳本都有可能出錯，最好把你需要的東西鎖定以防萬一
 2. 腳本判斷速度一定 ***比人慢*** ，所以請盡量 ***不要*** 與人組隊
 3. 使用寄信模式需要讓接收者位於清單 001~006 的位置
 4. 我只在夜神模擬器和我的HTC New One測試過, 最好先確定腳本正常執行後再離開
+
+### Caution :
+1. Script may have some bug, so lock you need item in order not to be processed or send
+2. Because identifying picture is ***slower*** than human ,***do not*** play with human
+3. In mailing mode, you have to let the receiver at 001~006 on the list
+4. I only test on Nox emulator and my HTC New One, you had better look its execute one time before leaving
 
 ### 測試機資訊 :
 1. HTC New One 801e
@@ -48,39 +75,6 @@
 	* 中央處理器:Celeron E3200 2.40GHz(N/A)
 	* 記憶體:4GB(2GB)
 	* 螢幕解析度:1360x768(1920x1080)
-<br>
-<br>
-<br>
-<br>
-
-_My english is poor , so if somthing can be better, please leave messages at my post or PM me_
-
-# ToramAutoProject :
-# Toram Online Auto Attack & Clean Bag Script on AnkuLua
-
-## Status : _Beta_ 1.0
-> Still testing its stability
-
-### Function :
-1. Auto ignore error: It can ignore attack error and normal executing e.g. No monster, spell was interrupted
-2. Two clean bag mode :
-    * proccess mode : Turn trash into element point
-    * mailing mode : Mailing everything which is unlocked to someone <br>
-    	***Attention:*** You should fill up your bag with you want before using mailing mode, or trashes will be send together
-3. Execute timer : Auto stop after times up
-
-### Preparation :
-1. turn on "auto use item" if you may be killed
-2. turn **off** "Auto focus" in order not to move out of the area
-3. switch "Target Monster" to **furthest**
-4. set combo like this **impact -> storm + smite -> MP charge + swift** <br>
-<img src="image/combo_enUS.png" alt="altcombo_enUS.png" title="combo_enUS.png">
-
-### Caution :
-1. Script may have some bug, so lock you need item in order not to be processed or send
-2. Because identifying picture is ***slower*** than human ,***do not*** play with human
-3. In mailing mode, you have to let the receiver at 001~006 on the list
-4. I only test on Nox emulator and my HTC New One, you had better look its execute one time before leaving
 
 ### Test Devices information :
 1. HTC New One 801e
@@ -93,3 +87,5 @@ _My english is poor , so if somthing can be better, please leave messages at my 
 	* CPU:Celeron E3200 2.40GHz(N/A)
 	* RAM:4GB(2GB)
 	* Resolution:1360x768(1920x1080)
+
+_My english is poor , so if somthing can be better, please leave messages at my post or PM me_
