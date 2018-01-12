@@ -28,7 +28,7 @@
 1. 開啟"自動使用藥水"以免死亡
 2. **關閉**"鏡頭自動追蹤"以免跑遠
 3. 將"鎖定怪物"設成**遠**
-4. 連擊請設成 **衝擊波 -> 暴風+增幅 -> 魔力填充+迅速**
+4. 連擊請設成 **衝擊波 -> 暴風+增幅 -> 魔力填充+迅速** <br>
 <img src="image/Combo_zhTW.png" alt="Combo_zhTW.png" title="Combo_zhTW.png">
 
 ### 注意事項 :
@@ -73,7 +73,7 @@ _My english is poor , so if somthing can be better, please leave messages at my 
 1. turn on "auto use item" if you may be killed
 2. turn **off** "Auto focus" in order not to move out of the area
 3. switch "Target Monster" to **furthest**
-4. set combo like this **impact -> storm + smite -> MP charge + swift**
+4. set combo like this **impact -> storm + smite -> MP charge + swift** <br>
 <img src="image/Combo.png" alt="Combo.png" title="Combo.png">
 
 ### Caution :
