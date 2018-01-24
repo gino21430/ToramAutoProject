@@ -108,7 +108,9 @@ function processUI()
 			{
 				["type"] = "CheckBoxGroup",
 				["list"] = "單手劍,金屬 ,盔甲,帽子,布料 ,獸品 ,法杖,盾牌,木材 ,藥品(植物),藥品(雜類),粉末 ,魔導具,魔素",
-				["select"] = "1@2"
+						--  1      2     3    4     5    6     7     8   9     10         11         12    13     14
+				["image"] = "icon1.png,icon2.png,icon3.png,icon4.png,icon5.png,icon6.png,icon7.png,icon8.png,icon9.png,icon10.png,icon11.png,icon12.png,icon13.png,icon14.png"
+				["select"] = "5@10@11@12"
 			},
 		
 		}
